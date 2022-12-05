@@ -40,3 +40,9 @@ USING (min_salary >= 4000);
 
 -- combined query with OR
 SELECT * FROM jobs WHERE (max_salary >= 10000 OR max_salary >= 4000);
+
+-- drop policy
+
+DROP POLICY [policy_name]
+
+DROP POLICY p_jobs_sales_min_salary_4000 ON jobs;

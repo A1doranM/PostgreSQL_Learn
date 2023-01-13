@@ -13,6 +13,25 @@ CREATE INDEX idx_orders_customer_id_order_id ON orders(customer_id, order_id);
 -- first column are the most selective, the index access method will be the
 -- cheapest.
 
+-- UNIQUE INDEXES
+-- If we define UNIQUE index for two or more columns the combined values in these columns
+-- cannot be duplicated in multiple rows.
 
+CREATE UNIQUE INDEX idx_u_products_product_id ON products (product_id);
 
+-- Get list of all indexes
+
+SELECT
+    *
+FROM
+    pg_indexes;
+
+-- indexes of a table
+
+SELECT
+    *
+FROM
+    pg_indexes
+WHERE
+	tablename = 'orders';
 

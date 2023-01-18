@@ -49,4 +49,19 @@
 
         To see how optimizer chooses how to execute query run  EXPLAIN command e.g:
         EXPLAIN SELECT * FROM orders;
+
+    -- Index Nodes
+
+        1. An index is used to access the dataset
+
+        2. Data file and index files are separated but they are nearby
+
+        3. Index Nodes scan type
+
+            Index Scan          if query uses index columns with not index columns -> seeking the tuples -> then read again the data
+
+            Index Only Scan     if query uses index columns only -> directly get data from index file
+
+            Bitmap Index Scan   builds a memory bitmap of where tuples that satisfy the statement clauses
+
 */

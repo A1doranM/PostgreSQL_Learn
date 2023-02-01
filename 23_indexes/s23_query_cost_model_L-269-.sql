@@ -1,4 +1,0 @@
--- The Query cost model
-/*
-
-*/

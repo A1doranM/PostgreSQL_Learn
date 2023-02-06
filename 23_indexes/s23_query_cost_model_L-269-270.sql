@@ -18,4 +18,12 @@
 
     pg_relation_size * seq_page_cost + total_number_of_table_records * cpu_tuple_cost
     + total_number_of_table_records * cpu_operator_cost
+
+    -- index are not free
+    -----------------------------------------
+
+    -- index size
+    SELECT pg_size_pretty(pg_indexes_size('TABLE_NAME'))
+
+
 */

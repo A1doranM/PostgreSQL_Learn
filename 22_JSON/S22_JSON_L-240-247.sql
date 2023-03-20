@@ -35,4 +35,4 @@ FROM table_name, jsonb_to_record(table_name) j (
 SELECT
     *
 FROM directors_docs
-WHERE body->'first_name' ? 'John'
+WHERE body->'first_name' ? 'John';

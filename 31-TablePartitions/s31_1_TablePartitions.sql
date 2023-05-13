@@ -135,6 +135,20 @@
 
     Partition types
 
+    1. Range
+        The table is partitioned into "ranges" defined by a key
+        column or set of columns, with no overlap between the ranges
+        of values assigned to different partitions.
+
+    2. List
+        The table is partitioned bu explicitly listing which key
+        values appear in each partition.
+
+    3. Hash
+        The table is partitioned by specifying a modulus and a
+        remainder for each partition. Each partition will hold the
+        rows for which the hash value of the partition key divided
+        by the specified modules will produce the specified remainder.
 
 
 */

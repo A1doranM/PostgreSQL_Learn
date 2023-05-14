@@ -39,3 +39,12 @@ CREATE TABLE employees_range_y2001 PARTITION TO employees_range
 -- NEVER insert in partition table, insert data only in master table
 
 INSERT INTO employees_range (birth_date, country_code) VALUES
+
+-- SELECTING data
+-- If we does not specify WHERE condition PostgreSQL scan all partitions,
+-- but if we write query like this
+
+SELECT * FROM employees_range
+WHERE birth_date = '2000-01-02';
+
+-- The PostgreSQK directly access the partition table 'employees_range_y2000'

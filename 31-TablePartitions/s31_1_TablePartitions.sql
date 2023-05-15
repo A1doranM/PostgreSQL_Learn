@@ -150,7 +150,23 @@
         rows for which the hash value of the partition key divided
         by the specified modules will produce the specified remainder.
 
+    --------------------------------------------------------------
 
+    ALTERing the Bounds of a Partitions
+
+        To change boundaries of partition we should detach it, and then attach with new
+        boundaries best practice is to do this in transaction.
+
+    -- BEGIN
+        -- DETACH
+        -- ALTER
+        -- ATTACH
+    -- COMMIT
+
+    BEGIN TRANSACTION;
+        ALTER TABLE master_table DETACH PARTITION partition_name;
+        ALTER TABLE master_table ATTACH PARTITION partition_name FOR VALUES FROM (0) to (100);
+    COMMIT TRANSACTION;
 */
 
 

@@ -39,3 +39,6 @@ CREATE TABLE employees_range_y2001 PARTITION TO employees_range
 -- NEVER insert in partition table, insert data only in master table
 
 INSERT INTO employees_range (birth_date, country_code) VALUES
+('2000-01-01', 'US'),
+('2000-01-02', 'FR'),
+('2000-01-03', 'IT');

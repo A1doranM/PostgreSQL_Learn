@@ -3,39 +3,43 @@
 
 /*
 
-    - The table is partitioned into ranges defined by a key column or
-        set of columns, with NO OVERLAP between the ranges of values
-        assigned to different partitions.
-    - Useful when working ith dates Days/Weekly/Month.
-    - A multi-level design can reduce query planning time, but a flat
-        partition design runs faster.
+    1. The table is partitioned by explicitly listing which key values appear in each partition
+
+    2. A list partitioned table can use any data type column that allows equality comparisons
+        as its partition key column.
+
+    3. Can also have a multi-column partition key
+
+    4. Ideal for conditions when you know known values of partition key e.g. country codes,
+        month_names
+
+    5. We create partition by LIST when we want to create a partition on a list of values.
 
 */
 
--- Lets create the master table 'employees_range'
--- PARTITION BY RANGE (field)
+-- Lets create the master table 'employees_list'
+-- PARTITION BY LIST (field)
 
-CREATE TABLE employees_range (
+CREATE TABLE employees_list (
   id bigserial,
   birth_date DATE NOT NULL,
   country_code VARCHAR(2) NOT NULL
-) PARTITION BY RANGE (birth_date);
+) PARTITION BY LIST (country_code);
 
--- Now we will create individual partition tables based on birth_date range values
--- FROM value1 TO value2
+-- Now we will create individual partition tables based on country_code values
 
--- Lets create yearly partition:
+-- Lets create partition:
 
-CREATE TABLE partition_table_name PARTITION TO master_table
-    FOR VALUES FROM value1 TO value2
+CREATE TABLE employees_list_us PARTITION TO employees_list
+    FOR VALUES IN ('US');
 
-CREATE TABLE employees_range_y2000 PARTITION TO employees_range
-    FOR VALUES FROM ('2000-01-01') TO ('2001-01-01');
-
-CREATE TABLE employees_range_y2001 PARTITION TO employees_range
-    FOR VALUES FROM ('2001-01-01') TO ('2002-01-01');
+CREATE TABLE employees_list_eu PARTITION TO employees_list
+    FOR VALUES IN ('UK', 'DE', 'IT', 'FR');
 
 -- INSERT Operations
 -- NEVER insert in partition table, insert data only in master table
 
-INSERT INTO employees_range (birth_date, country_code) VALUES
+INSERT INTO employees_list (birth_date, country_code) VALUES
+('2000-01-01', 'US'),
+('2000-01-02', 'FR'),
+('2000-01-03', 'IT');

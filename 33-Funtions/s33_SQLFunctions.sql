@@ -73,7 +73,7 @@ SELECT
     *
 FROM fn_employees_latest_hire();
 
--- Returning multiple rows, for this we should use RETURNS SETOF
+-- Returning multiple rows from table or view, for this we should use RETURNS SETOF
 
 CREATE OR REPLACE FUNCTION fn_employees_hire_date_by_year(p_year integer)
 RETURNS SETOF employee AS

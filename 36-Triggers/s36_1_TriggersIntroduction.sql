@@ -112,7 +112,7 @@ $$
         RAISE NOTICE 'TG_TABLE_NAME: %', TG_TABLE_NAME; -- table name
         RAISE NOTICE 'TG_WHEN: %', TG_WHEN; -- when it was called (BEFORE | AFTER)
         RAISE NOTICE 'TG_LEVEL: %', TG_LEVEL; -- level (ROW | STATEMENT)
-        RAISE NOTICE 'TG_OP: %', TG_OP; -- operation (DELETE | UPDATE | INSERT)
+        RAISE NOTICE 'TG_OP: %', TG_OP; -- operation (DELETE | TRUNCATE | UPDATE | INSERT)
         RAISE NOTICE 'TG_NARGS: %', TG_NARGS; --
         RAISE NOTICE 'TG_ARGV: %', TG_ARGV; -- trigger name
 

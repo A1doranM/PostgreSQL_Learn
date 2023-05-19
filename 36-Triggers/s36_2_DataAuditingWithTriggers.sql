@@ -52,3 +52,11 @@ BEGIN
 
 END;
 &&
+
+-- Bind trigger function to table
+
+CREATE TRIGGER trg_players_name_changes
+    BEFORE UPDATE -- action
+    ON players -- table
+    FOR EACH ROW -- Statement or row level trigger
+    EXECUTE PROCEDURE fn_players_name_changes_log();

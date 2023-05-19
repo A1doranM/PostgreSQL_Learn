@@ -39,7 +39,7 @@ $$
 -- Bind trigger
 
 CREATE TRIGGER trg_disallow_delete
-AFTER DELETE
+BEFORE DELETE
 ON test_delete
 FOR EACH ROW
 EXECUTE PROCEDURE fn_generic_cancel_op();

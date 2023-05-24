@@ -34,5 +34,39 @@ BEGIN;
 
 COMMIT;
 
--- Fix aborted transaction
+-- Partial transaction rollback
 -- ############################
+
+/*
+
+    To support the ROLLBACK of PARTIAL TRANSACTION, we must put Savepoint at strategic
+    location of the transaction block. Thus, if a rollback is required, you can read back
+    on the said point.
+
+    -- Syntax
+
+    SAVEPOINT savepoint_name;
+
+    -- And rollback to it
+
+    ROLLBACK TO savepoint_name;
+
+*/
+
+-- Example
+
+BEGIN;
+
+    UPDATE accounts
+    SET balance = balance - 50
+    WHERE name = 'Adam';
+
+    SAVEPOINT account_updated; -- savepoint
+
+    UPDATE accounts
+    SET balance = balance + 150
+    WHERE name = 'Adam';
+
+    ROLLBACK TO account_updated; -- rollback transaction to savepoint
+
+COMMIT;
